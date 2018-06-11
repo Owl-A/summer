@@ -8,8 +8,10 @@ fi
 echo "1: Creating a fresh image"
 cp $2 ./$3.qcow2
 cp ./lab/lab$1.sh ./lab.sh 
+cp ./lab/labd$1 ./destroy.sh
 echo "2: copying the lab scripts"
 virt-copy-in -a ./$3.qcow2 ./lab.sh /etc/init.d/
+virt-copy-in -a ./$3.qcow2 ./destroy.sh /etc/init.d/
 mv $3.qcow2 /var/lib/libvirt/images/
 
 # replace the ids and macs

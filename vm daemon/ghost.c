@@ -40,7 +40,12 @@ int main(int argc, char* argv[]){
   int done = 0; 
   while(!done){
     sleep(1);
-    if(system("/etc/init.d/lab.sh") == 0) done = 1;
+    int ret = system("/etc/init.d/lab.sh"); 
+    if( ret == 0 ){
+      done = 1;
+    }else{
+      fprintf(file, "exit status of this try is %d", ret);
+    }
     if(done == 1){
       // may choose to write another program that handles this notif but for time being let's direct it to the logs
       fprintf(file, "Daemon finished task successfully\n");

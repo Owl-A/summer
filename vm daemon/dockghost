@@ -1,0 +1,19 @@
+#!/bin/sh
+# kFreeBSD do not accept scripts as interpreters, using #!/bin/sh and sourcing.
+if [ true != "$INIT_D_SCRIPT_SOURCED" ] ; then
+    set "$0" "$@"; INIT_D_SCRIPT_SOURCED=true . /lib/init/init-d-script
+fi
+### BEGIN INIT INFO
+# Provides:         docker startup daemon 
+### END INIT INFO
+
+DESC="starts the dockers on startup of system"
+DAEMON=/usr/sbin/ghost
+DESTROY=/etc/init.d/destroy.sh
+
+case "$1" in 
+   start) $DAEMON
+          ;;
+   stop)  $DESTROY
+          ;;   
+esac          
