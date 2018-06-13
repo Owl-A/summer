@@ -25,3 +25,5 @@ docker exec proxy sh -c "rm $homedir/cert.key"
 docker cp proxy:$homedir/mitmproxy-ca.crt /tmp/$TMP/
 
 docker run --rm -itd --network proxynet --ip $clientip --name client --env PROXY=$proxyip:8080 --env CERT="$(cat /tmp/$TMP/mitmproxy-ca.crt)" owla/debian-proxy-client
+
+rm -r /tmp/$TMP
