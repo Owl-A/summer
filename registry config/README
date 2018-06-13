@@ -1,0 +1,8 @@
+To add IP SAN
+  use export OPENSSL_CONF=/etc/ssl/openssl.cnf to set the file as default docker config file
+  add to [ v3_req ] and [ v3_ca ] field `subjectAltName=@alternate_names
+  add table [ alternate_names ] and a new field `IP=1.2.3.4` where 1.2.3.4 is IP of the machine
+  generate certs using `openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key -x509 -days 365 -out certs/domain.crt`
+  copy the `domain.crt` to `/etc/docker/certs.d/registrydomain.com:5000/ca.crt`
+
+  

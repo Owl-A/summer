@@ -8,7 +8,7 @@ fi
 echo "1: Creating a fresh image"
 cp $2 ./$3.qcow2
 cp ./lab/lab$1.sh ./lab.sh 
-cp ./lab/labd$1 ./destroy.sh
+cp ./lab/labd$1.sh ./destroy.sh
 echo "2: copying the lab scripts"
 virt-copy-in -a ./$3.qcow2 ./lab.sh /etc/init.d/
 virt-copy-in -a ./$3.qcow2 ./destroy.sh /etc/init.d/
@@ -29,4 +29,5 @@ virsh start $3
 # cleaning 
 echo "5: removing the temporary file"
 rm ./lab.sh
+rm ./destroy.sh
 rm ./$3-conf.xml
